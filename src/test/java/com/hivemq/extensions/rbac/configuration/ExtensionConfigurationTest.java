@@ -80,9 +80,6 @@ public class ExtensionConfigurationTest {
         final ExtensionConfig extensionConfig = extensionConfiguration.getExtensionConfig();
 
         assertNotNull(extensionConfig);
-        assertEquals(999, extensionConfig.getReloadInterval());
         assertEquals(HASHED, extensionConfig.getPasswordType());
-        assertEquals(1, extensionConfig.getListenerNames().size());
-        assertTrue(extensionConfig.getListenerNames().contains("normal-listener"));
     }
 }
