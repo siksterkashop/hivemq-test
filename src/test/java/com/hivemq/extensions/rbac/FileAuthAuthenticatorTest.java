@@ -17,14 +17,12 @@
 
 package com.hivemq.extensions.rbac;
 
-import com.hivemq.extension.sdk.api.client.parameter.*;
-import com.hivemq.extensions.rbac.configuration.entities.ExtensionConfig;
-import com.hivemq.extensions.rbac.utils.CredentialsValidator;
 import com.hivemq.extension.sdk.api.annotations.NotNull;
 import com.hivemq.extension.sdk.api.annotations.Nullable;
 import com.hivemq.extension.sdk.api.auth.parameter.SimpleAuthInput;
 import com.hivemq.extension.sdk.api.auth.parameter.SimpleAuthOutput;
 import com.hivemq.extension.sdk.api.auth.parameter.TopicPermission;
+import com.hivemq.extension.sdk.api.client.parameter.*;
 import com.hivemq.extension.sdk.api.packets.auth.DefaultAuthorizationBehaviour;
 import com.hivemq.extension.sdk.api.packets.auth.ModifiableDefaultPermissions;
 import com.hivemq.extension.sdk.api.packets.connect.ConnackReasonCode;
@@ -32,6 +30,8 @@ import com.hivemq.extension.sdk.api.packets.connect.ConnectPacket;
 import com.hivemq.extension.sdk.api.packets.connect.WillPublishPacket;
 import com.hivemq.extension.sdk.api.packets.general.MqttVersion;
 import com.hivemq.extension.sdk.api.packets.general.UserProperties;
+import com.hivemq.extensions.rbac.configuration.entities.ExtensionConfig;
+import com.hivemq.extensions.rbac.utils.CredentialsValidator;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -44,7 +44,8 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 
@@ -88,6 +89,31 @@ public class FileAuthAuthenticatorTest {
     public void test_connect_with_wildcard_username() {
         fileAuthAuthenticator.onConnect(new TestInput("client1", "client/#", "pass1"), output);
         verify(output).failAuthentication(ConnackReasonCode.BAD_USER_NAME_OR_PASSWORD, "The characters '#' and '+' are not allowed in the username");
+    }
+
+    @Test
+    public void test_connect_with_wildcard_client() {
+        fileAuthAuthenticator.onConnect(new TestInput("client1/#", "user1", "pass1"), output);
+        verify(output).failAuthentication(ConnackReasonCode.BAD_USER_NAME_OR_PASSWORD, "The characters '#' and '+' are not allowed in the username");
+    }
+
+    @Test
+    public void test_connect_with_plus_wildcard_client() {
+        fileAuthAuthenticator.onConnect(new TestInput("client1/+", "user1", "pass1"), output);
+        verify(output).failAuthentication(ConnackReasonCode.BAD_USER_NAME_OR_PASSWORD, "The characters '#' and '+' are not allowed in the username");
+    }
+
+    @Test
+    public void test_connect_with_plus_wildcard_username() {
+        fileAuthAuthenticator.onConnect(new TestInput("client1", "client/+", "pass1"), output);
+        verify(output).failAuthentication(ConnackReasonCode.BAD_USER_NAME_OR_PASSWORD, "The characters '#' and '+' are not allowed in the username");
+    }
+
+    @Test
+    public void test_connect_with_success() {
+        when(credentialsValidator.getRoles(anyString(), any())).thenReturn(List.of("role1", "role2"));
+        fileAuthAuthenticator.onConnect(new TestInput("client1", "user1", "pass1"), output);
+        verify(output).authenticateSuccessfully();
     }
 
     @SuppressWarnings("ConstantConditions")
