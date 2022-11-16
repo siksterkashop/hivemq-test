@@ -18,13 +18,13 @@
 package com.hivemq.extensions.rbac.utils;
 
 import com.codahale.metrics.MetricRegistry;
-import com.hivemq.extensions.rbac.configuration.Configuration;
-import com.hivemq.extensions.rbac.configuration.entities.*;
 import com.hivemq.extension.sdk.api.annotations.NotNull;
 import com.hivemq.extension.sdk.api.annotations.Nullable;
 import com.hivemq.extension.sdk.api.annotations.ThreadSafe;
 import com.hivemq.extension.sdk.api.auth.parameter.TopicPermission;
 import com.hivemq.extension.sdk.api.services.builder.Builders;
+import com.hivemq.extensions.rbac.configuration.Configuration;
+import com.hivemq.extensions.rbac.configuration.entities.*;
 
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
