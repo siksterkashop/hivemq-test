@@ -17,9 +17,9 @@
 
 package com.hivemq.extensions.rbac.configuration;
 
+import com.hivemq.extension.sdk.api.annotations.NotNull;
 import com.hivemq.extensions.rbac.configuration.ConfigCredentialsValidator.ValidationResult;
 import com.hivemq.extensions.rbac.configuration.entities.*;
-import com.hivemq.extension.sdk.api.annotations.NotNull;
 import org.junit.Test;
 
 import java.util.List;

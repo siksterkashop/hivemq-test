@@ -18,13 +18,11 @@
 package com.hivemq.extensions.rbac.configuration;
 
 import com.hivemq.extensions.rbac.configuration.entities.ExtensionConfig;
-import com.hivemq.extensions.rbac.configuration.entities.PasswordType;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 
 import java.io.File;
-import java.io.IOException;
 import java.nio.file.Files;
 
 import static com.hivemq.extensions.rbac.configuration.ExtensionConfiguration.EXTENSION_CONFIG_FILE_NAME;

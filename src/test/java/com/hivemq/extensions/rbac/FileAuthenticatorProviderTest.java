@@ -17,13 +17,11 @@
 
 package com.hivemq.extensions.rbac;
 
-import com.hivemq.extensions.rbac.configuration.entities.ExtensionConfig;
-import com.hivemq.extensions.rbac.utils.CredentialsValidator;
 import com.hivemq.extension.sdk.api.auth.Authenticator;
 import com.hivemq.extension.sdk.api.auth.parameter.AuthenticatorProviderInput;
+import com.hivemq.extensions.rbac.configuration.entities.ExtensionConfig;
+import com.hivemq.extensions.rbac.utils.CredentialsValidator;
 import org.junit.Test;
-
-import java.security.cert.Extension;
 
 import static org.junit.Assert.assertSame;
 import static org.mockito.Mockito.mock;

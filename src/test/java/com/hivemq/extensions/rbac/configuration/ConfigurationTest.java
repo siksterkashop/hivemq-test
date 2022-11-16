@@ -17,9 +17,9 @@
 
 package com.hivemq.extensions.rbac.configuration;
 
-import com.hivemq.extensions.rbac.configuration.entities.ExtensionConfig;
 import com.hivemq.extension.sdk.api.annotations.NotNull;
 import com.hivemq.extension.sdk.api.annotations.Nullable;
+import com.hivemq.extensions.rbac.configuration.entities.ExtensionConfig;
 import com.hivemq.extensions.rbac.configuration.entities.FileAuthConfig;
 import org.junit.Rule;
 import org.junit.Test;
