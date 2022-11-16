@@ -94,13 +94,13 @@ public class FileAuthAuthenticatorTest {
     @Test
     public void test_connect_with_wildcard_client() {
         fileAuthAuthenticator.onConnect(new TestInput("client1/#", "user1", "pass1"), output);
-        verify(output).failAuthentication(ConnackReasonCode.CLIENT_IDENTIFIER_NOT_VALID, "The characters '#' and '+' are not allowed in the username");
+        verify(output).failAuthentication(ConnackReasonCode.CLIENT_IDENTIFIER_NOT_VALID, "The characters '#' and '+' are not allowed in the client identifier");
     }
 
     @Test
     public void test_connect_with_plus_wildcard_client() {
         fileAuthAuthenticator.onConnect(new TestInput("client1/+", "user1", "pass1"), output);
-        verify(output).failAuthentication(ConnackReasonCode.CLIENT_IDENTIFIER_NOT_VALID, "The characters '#' and '+' are not allowed in the username");
+        verify(output).failAuthentication(ConnackReasonCode.CLIENT_IDENTIFIER_NOT_VALID, "The characters '#' and '+' are not allowed in the client identifier");
     }
 
     @Test
