@@ -127,7 +127,7 @@ public class TestMQIT {
                 Mqtt5ConnAckException.class,
                 ()-> publisher.toBlocking().connect()
         );
-        assertEquals(Mqtt5ConnAckReasonCode.CLIENT_IDENTIFIER_NOT_VALID, thrown.getMqttMessage().getReasonCode());
+        assertEquals(Mqtt5ConnAckReasonCode.BAD_USER_NAME_OR_PASSWORD, thrown.getMqttMessage().getReasonCode());
     }
 
     @Test
@@ -142,6 +142,6 @@ public class TestMQIT {
                 Mqtt5ConnAckException.class,
                 ()-> publisher.toBlocking().connect()
         );
-        assertEquals(Mqtt5ConnAckReasonCode.CLIENT_IDENTIFIER_NOT_VALID, thrown.getMqttMessage().getReasonCode());
+        assertEquals(Mqtt5ConnAckReasonCode.BAD_USER_NAME_OR_PASSWORD, thrown.getMqttMessage().getReasonCode());
     }
 }
