@@ -17,8 +17,8 @@
 
 package com.hivemq.extensions.rbac.configuration;
 
-import com.hivemq.extensions.rbac.configuration.entities.ExtensionConfig;
 import com.hivemq.extension.sdk.api.annotations.NotNull;
+import com.hivemq.extensions.rbac.configuration.entities.ExtensionConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

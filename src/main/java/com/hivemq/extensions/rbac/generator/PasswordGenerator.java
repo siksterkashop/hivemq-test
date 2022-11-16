@@ -20,9 +20,9 @@ package com.hivemq.extensions.rbac.generator;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
-import com.hivemq.extensions.rbac.utils.Hashing;
 import com.hivemq.extension.sdk.api.annotations.NotNull;
 import com.hivemq.extension.sdk.api.annotations.Nullable;
+import com.hivemq.extensions.rbac.utils.Hashing;
 import org.apache.commons.lang3.RandomStringUtils;
 
 import java.nio.charset.StandardCharsets;
