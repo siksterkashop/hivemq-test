@@ -61,4 +61,28 @@ public class ExtensionConfigurationTest {
         assertEquals(1, extensionConfig.getListenerNames().size());
         assertTrue(extensionConfig.getListenerNames().contains("normal-listener"));
     }
+
+    @Test
+    public void test_read_extension_configuration_missing_password_type() throws Exception {
+
+        final File configFile = new File(temporaryFolder.getRoot(), EXTENSION_CONFIG_FILE_NAME);
+
+        Files.writeString(configFile.toPath(),
+                "<extension-configuration>" +
+                        "   <credentials-reload-interval>999</credentials-reload-interval>" +
+                        "   <listener-names>" +
+                        "       <listener-name>normal-listener</listener-name>" +
+                        "   </listener-names>" +
+                        "</extension-configuration>");
+
+        final ExtensionConfiguration extensionConfiguration = new ExtensionConfiguration(temporaryFolder.getRoot());
+
+        final ExtensionConfig extensionConfig = extensionConfiguration.getExtensionConfig();
+
+        assertNotNull(extensionConfig);
+        assertEquals(999, extensionConfig.getReloadInterval());
+        assertEquals(HASHED, extensionConfig.getPasswordType());
+        assertEquals(1, extensionConfig.getListenerNames().size());
+        assertTrue(extensionConfig.getListenerNames().contains("normal-listener"));
+    }
 }
