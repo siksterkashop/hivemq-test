@@ -1,43 +1,44 @@
 /*
- * Copyright 2018 dc-square GmbH
+ *
+ * Copyright 2019 HiveMQ GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
-
 package com.hivemq.extensions.rbac.configuration.entities;
 
 import com.hivemq.extension.sdk.api.annotations.NotNull;
 import com.hivemq.extension.sdk.api.annotations.Nullable;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.List;
-
 
 @XmlRootElement(name = "file-rbac")
 @XmlType(propOrder = {})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class FileAuthConfig {
 
-    @Nullable
     @XmlElementWrapper(name = "users")
     @XmlElement(name = "user")
-    private List<User> users;
+    private @Nullable List<User> users;
 
-    @Nullable
     @XmlElementWrapper(name = "roles")
     @XmlElement(name = "role")
-    private List<Role> roles;
+    private @Nullable List<Role> roles;
 
     public FileAuthConfig() {
     }
@@ -47,8 +48,7 @@ public class FileAuthConfig {
         this.roles = roles;
     }
 
-    @Nullable
-    public List<User> getUsers() {
+    public @Nullable List<User> getUsers() {
         return users;
     }
 
@@ -56,8 +56,7 @@ public class FileAuthConfig {
         this.users = users;
     }
 
-    @Nullable
-    public List<Role> getRoles() {
+    public @Nullable List<Role> getRoles() {
         return roles;
     }
 
@@ -65,12 +64,8 @@ public class FileAuthConfig {
         this.roles = roles;
     }
 
-    @NotNull
     @Override
-    public String toString() {
-        return "Config{" +
-                "users=" + users +
-                ", roles=" + roles +
-                '}';
+    public @NotNull String toString() {
+        return "Config{" + "users=" + users + ", roles=" + roles + '}';
     }
 }

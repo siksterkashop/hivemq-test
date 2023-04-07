@@ -1,20 +1,19 @@
 /*
- * Copyright 2018 dc-square GmbH
+ *
+ * Copyright 2019 HiveMQ GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
-
 package com.hivemq.extensions.rbac.configuration.entities;
 
 import com.hivemq.extension.sdk.api.annotations.NotNull;
@@ -26,35 +25,29 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;
 
-
 @XmlType(propOrder = {})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Permission {
 
-    @Nullable
     @XmlElement(name = "topic", required = true)
-    private String topic;
+    private @Nullable String topic;
 
-    @NotNull
     @XmlElement(name = "activity", defaultValue = "ALL")
-    private TopicPermission.MqttActivity activity = TopicPermission.MqttActivity.ALL;
+    private @Nullable TopicPermission.MqttActivity activity = TopicPermission.MqttActivity.ALL;
 
-    @NotNull
     @XmlElement(name = "qos", defaultValue = "ALL")
-    private TopicPermission.Qos qos = TopicPermission.Qos.ALL;
+    private @Nullable TopicPermission.Qos qos = TopicPermission.Qos.ALL;
 
-    @NotNull
     @XmlElement(name = "retain", defaultValue = "ALL")
-    private TopicPermission.Retain retain = TopicPermission.Retain.ALL;
+    private @Nullable TopicPermission.Retain retain = TopicPermission.Retain.ALL;
 
-    @NotNull
     @XmlElement(name = "shared-subscription", defaultValue = "ALL")
-    private TopicPermission.SharedSubscription sharedSubscription = TopicPermission.SharedSubscription.ALL;
+    private @Nullable TopicPermission.SharedSubscription sharedSubscription = TopicPermission.SharedSubscription.ALL;
 
-    @NotNull
     @XmlElement(name = "shared-group", defaultValue = "#")
-    private String sharedGroup = "#";
+    private @Nullable String sharedGroup = "#";
 
+    @SuppressWarnings("unused")
     public Permission() {
     }
 
@@ -62,84 +55,67 @@ public class Permission {
         this.topic = topic;
     }
 
-    public Permission(final @NotNull String topic,
-                      final @NotNull TopicPermission.MqttActivity activity,
-                      final @NotNull TopicPermission.Qos qos,
-                      final @NotNull TopicPermission.Retain retain,
-                      final @NotNull TopicPermission.SharedSubscription sharedSubscription,
-                      final @NotNull String sharedGroup) {
-        this.topic = topic;
-        this.activity = activity;
-        this.qos = qos;
-        this.retain = retain;
-        this.sharedSubscription = sharedSubscription;
-        this.sharedGroup = sharedGroup;
-    }
-
-    @Nullable
-    public String getTopic() {
+    public @Nullable String getTopic() {
         return topic;
     }
 
-    public void setTopic(final @NotNull String topic) {
-        this.topic = topic;
-    }
-
-    @NotNull
-    public TopicPermission.MqttActivity getActivity() {
+    public @Nullable TopicPermission.MqttActivity getActivity() {
         return activity;
     }
 
-    public void setActivity(final @NotNull TopicPermission.MqttActivity activity) {
+    public void setActivity(final @Nullable TopicPermission.MqttActivity activity) {
         this.activity = activity;
     }
 
-    @NotNull
-    public TopicPermission.Qos getQos() {
+    public @Nullable TopicPermission.Qos getQos() {
         return qos;
     }
 
-    public void setQos(final @NotNull TopicPermission.Qos qos) {
+    public void setQos(final @Nullable TopicPermission.Qos qos) {
         this.qos = qos;
     }
 
-    @NotNull
-    public TopicPermission.Retain getRetain() {
+    public @Nullable TopicPermission.Retain getRetain() {
         return retain;
     }
 
-    public void setRetain(final @NotNull TopicPermission.Retain retain) {
+    public void setRetain(final @Nullable TopicPermission.Retain retain) {
         this.retain = retain;
     }
 
-    @NotNull
-    public TopicPermission.SharedSubscription getSharedSubscription() {
+    public @Nullable TopicPermission.SharedSubscription getSharedSubscription() {
         return sharedSubscription;
     }
 
-    public void setSharedSubscription(final @NotNull TopicPermission.SharedSubscription sharedSubscription) {
+    public void setSharedSubscription(final @Nullable TopicPermission.SharedSubscription sharedSubscription) {
         this.sharedSubscription = sharedSubscription;
     }
 
-    @NotNull
-    public String getSharedGroup() {
+    public @Nullable String getSharedGroup() {
         return sharedGroup;
     }
 
-    public void setSharedGroup(final @NotNull String sharedGroup) {
+    public void setSharedGroup(final @Nullable String sharedGroup) {
         this.sharedGroup = sharedGroup;
     }
 
-    @NotNull
     @Override
-    public String toString() {
+    public @NotNull String toString() {
         return "Permission{" +
-                "topic='" + topic + '\'' +
-                ", activity=" + activity +
-                ", qos=" + qos +
-                ", retain=" + retain +
-                ", sharedSubscription=" + sharedSubscription +
-                ", sharedGroup='" + sharedGroup + '\'' +
+                "topic='" +
+                topic +
+                '\'' +
+                ", activity=" +
+                activity +
+                ", qos=" +
+                qos +
+                ", retain=" +
+                retain +
+                ", sharedSubscription=" +
+                sharedSubscription +
+                ", sharedGroup='" +
+                sharedGroup +
+                '\'' +
                 '}';
     }
 }

@@ -1,92 +1,70 @@
 /*
- * Copyright 2018 dc-square GmbH
+ *
+ * Copyright 2019 HiveMQ GmbH
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
  *
- * http://www.apache.org/licenses/LICENSE-2.0
+ *       http://www.apache.org/licenses/LICENSE-2.0
  *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
  */
-
 package com.hivemq.extensions.rbac.configuration.entities;
 
 import com.hivemq.extension.sdk.api.annotations.NotNull;
 import com.hivemq.extension.sdk.api.annotations.Nullable;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlType;
 import java.util.List;
-
 
 @XmlRootElement
 @XmlType(propOrder = {})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class User {
 
-    @Nullable
     @XmlElement(name = "name", required = true)
-    private String name;
+    private @Nullable String name;
 
-    @Nullable
     @XmlElement(name = "password", required = true)
-    private String password;
+    private @Nullable String password;
 
-    @Nullable
     @XmlElementWrapper(name = "roles")
     @XmlElement(name = "id")
-    private List<String> roles;
-
+    private @Nullable List<String> roles;
 
     public User() {
     }
 
-    public User(final @NotNull String name, final @NotNull String password, final @NotNull List<String> roles) {
+    public User(final @Nullable String name, final @Nullable String password, final @Nullable List<String> roles) {
         this.name = name;
         this.password = password;
         this.roles = roles;
     }
 
-    @Nullable
-    public String getName() {
+    public @Nullable String getName() {
         return name;
     }
 
-    public void setName(final @NotNull String name) {
-        this.name = name;
-    }
-
-    @Nullable
-    public String getPassword() {
+    public @Nullable String getPassword() {
         return password;
     }
 
-    public void setPassword(final @NotNull String password) {
-        this.password = password;
-    }
-
-    @Nullable
-    public List<String> getRoles() {
+    public @Nullable List<String> getRoles() {
         return roles;
     }
 
-    public void setRoles(final @NotNull List<String> roles) {
-        this.roles = roles;
-    }
-
-    @NotNull
     @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", roles=" + roles +
-                '}';
+    public @NotNull String toString() {
+        return "User{" + "name='" + name + '\'' + ", password='" + password + '\'' + ", roles=" + roles + '}';
     }
-
 }
