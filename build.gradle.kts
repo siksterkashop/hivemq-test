@@ -4,6 +4,8 @@ plugins {
     id("io.github.sgtsilvio.gradle.defaults")
     id("org.asciidoctor.jvm.convert")
     id("org.sonarqube") version "3.5.0.2730"
+    jacoco
+    id("jacoco-report-aggregation")
 }
 
 group = "com.hivemq.extensions"
@@ -62,6 +64,28 @@ dependencies {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
+
+    configure<JacocoTaskExtension> {
+        reports {
+            junitXml.required.set(true)
+            junitXml.outputLocation.set(file("${buildDir}/reports/jacoco/unitReport.xml"))
+            html.required.set(true)
+            html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
+        }
+    }
+}
+
+tasks.jacocoTestReport {
+    reports {
+        xml.required.set(true)
+        xml.outputLocation.set(file("${buildDir}/reports/jacoco/report.xml"))
+    }
+}
+
+sonar {
+    properties {
+        property("sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/report.xml")
+    }
 }
 
 tasks.processTestResources {
