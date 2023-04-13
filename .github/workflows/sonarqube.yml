@@ -59,4 +59,5 @@ jobs:
             -Dsonar.projectKey=homelinJava
             -Dsonar.sources=src/main/
             -Dsonar.tests=src/test/
+            -Dsonar.java.binaries=build/classes/
             -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/report.xml
