@@ -68,7 +68,7 @@ tasks.withType<Test>().configureEach {
     configure<JacocoTaskExtension> {
         reports {
             junitXml.required.set(true)
-            junitXml.outputLocation.set(file("${buildDir}/reports/jacoco/unitReport.xml"))
+            junitXml.outputLocation.set(file("${buildDir}/reports/jacoco"))
             html.required.set(true)
             html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
         }
