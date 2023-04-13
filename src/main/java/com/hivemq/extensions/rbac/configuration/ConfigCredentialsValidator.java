@@ -31,7 +31,7 @@ import java.util.Set;
 
 class ConfigCredentialsValidator {
 
-    private final static String userPrefix = "User '";
+    private static final String USER_PREFIX = "User '";
 
     static @NotNull ValidationResult validateConfig(
             final @NotNull ExtensionConfig extensionConfig, final @NotNull FileAuthConfig config) {
@@ -123,7 +123,7 @@ class ConfigCredentialsValidator {
             userNames.add(user.getName());
 
             if (user.getPassword() == null || user.getPassword().isEmpty()) {
-                errors.add(userPrefix + user.getName() + "' is missing a password");
+                errors.add(USER_PREFIX + user.getName() + "' is missing a password");
                 validationSuccessful = false;
                 continue;
             }
@@ -132,13 +132,13 @@ class ConfigCredentialsValidator {
                 final String[] split = password.split(":");
 
                 if (split.length < 2 || split[0].isEmpty() || split[1].isEmpty()) {
-                    errors.add(userPrefix + user.getName() + "' has invalid password");
+                    errors.add(USER_PREFIX + user.getName() + "' has invalid password");
                     validationSuccessful = false;
                     continue;
                 }
             }
             if (user.getRoles() == null || user.getRoles().isEmpty()) {
-                errors.add(userPrefix + user.getName() + "' is missing roles");
+                errors.add(USER_PREFIX + user.getName() + "' is missing roles");
                 validationSuccessful = false;
                 continue;
             }
