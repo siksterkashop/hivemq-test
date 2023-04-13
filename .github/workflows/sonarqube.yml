@@ -57,3 +57,4 @@ jobs:
         with:
           args:
             -Dsonar.projectKey=homelinJava
+            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/report.xml
