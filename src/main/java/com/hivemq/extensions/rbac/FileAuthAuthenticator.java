@@ -75,30 +75,6 @@ class FileAuthAuthenticator implements SimpleAuthenticator {
         }
         final String userName = userNameOptional.get();
 
-        //prevent clientIds with MQTT wildcard characters
-        if (clientId.contains("#") || clientId.contains("+")) {
-            //client is not authenticated
-            if (nextExtensionInsteadOfFail) {
-                simpleAuthOutput.nextExtensionOrDefault();
-                return;
-            }
-            simpleAuthOutput.failAuthentication(ConnackReasonCode.CLIENT_IDENTIFIER_NOT_VALID,
-                    "The characters '#' and '+' are not allowed in the client identifier");
-            return;
-        }
-
-        //prevent usernames with MQTT wildcard characters
-        if (userName.contains("#") || userName.contains("+")) {
-            //client is not authenticated
-            if (nextExtensionInsteadOfFail) {
-                simpleAuthOutput.nextExtensionOrDefault();
-                return;
-            }
-            simpleAuthOutput.failAuthentication(ConnackReasonCode.BAD_USER_NAME_OR_PASSWORD,
-                    "The characters '#' and '+' are not allowed in the username");
-            return;
-        }
-
         //check if we have any roles for username/password combination
         final List<String> roles = credentialsValidator.getRoles(userName, passwordOptional.get());
 

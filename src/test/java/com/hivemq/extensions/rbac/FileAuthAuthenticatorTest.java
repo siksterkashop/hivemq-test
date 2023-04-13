@@ -115,24 +115,10 @@ class FileAuthAuthenticatorTest {
     }
 
     @Test
-    void test_connect_with_wildcard_username() {
-        fileAuthAuthenticator.onConnect(new TestInput("client1", "client/#", "pass1"), simpleAuthOutput);
-        verify(simpleAuthOutput).failAuthentication(ConnackReasonCode.BAD_USER_NAME_OR_PASSWORD,
-                "The characters '#' and '+' are not allowed in the username");
-    }
-
-    @Test
     void test_connect_with_wildcard_username_but_nextExtensionOrDefault() {
         when(extensionConfig.isNextExtensionInsteadOfFail()).thenReturn(true);
         fileAuthAuthenticator.onConnect(new TestInput("client1", "client/#", "pass1"), simpleAuthOutput);
         verify(simpleAuthOutput).nextExtensionOrDefault();
-    }
-
-    @Test
-    void test_connect_with_wildcard_plus_username() {
-        fileAuthAuthenticator.onConnect(new TestInput("client1", "+/client", "pass1"), simpleAuthOutput);
-        verify(simpleAuthOutput).failAuthentication(ConnackReasonCode.BAD_USER_NAME_OR_PASSWORD,
-                "The characters '#' and '+' are not allowed in the username");
     }
 
     @Test
@@ -143,24 +129,10 @@ class FileAuthAuthenticatorTest {
     }
 
     @Test
-    void test_connect_with_wildcard_clientid() {
-        fileAuthAuthenticator.onConnect(new TestInput("client/#", "user1", "pass1"), simpleAuthOutput);
-        verify(simpleAuthOutput).failAuthentication(ConnackReasonCode.CLIENT_IDENTIFIER_NOT_VALID,
-                "The characters '#' and '+' are not allowed in the client identifier");
-    }
-
-    @Test
     void test_connect_with_wildcard_clientid_but_nextExtensionOrDefault() {
         when(extensionConfig.isNextExtensionInsteadOfFail()).thenReturn(true);
         fileAuthAuthenticator.onConnect(new TestInput("client/#", "user1", "pass1"), simpleAuthOutput);
         verify(simpleAuthOutput).nextExtensionOrDefault();
-    }
-
-    @Test
-    void test_connect_with_wildcard_plus_clientid() {
-        fileAuthAuthenticator.onConnect(new TestInput("+/client", "user1", "pass1"), simpleAuthOutput);
-        verify(simpleAuthOutput).failAuthentication(ConnackReasonCode.CLIENT_IDENTIFIER_NOT_VALID,
-                "The characters '#' and '+' are not allowed in the client identifier");
     }
 
     @Test
