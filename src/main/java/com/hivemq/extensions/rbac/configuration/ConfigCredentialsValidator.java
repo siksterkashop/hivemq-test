@@ -31,7 +31,7 @@ import java.util.Set;
 
 class ConfigCredentialsValidator {
 
-    private final static String userPrefix = "User ";
+    private final static String userPrefix = "User '";
 
     static @NotNull ValidationResult validateConfig(
             final @NotNull ExtensionConfig extensionConfig, final @NotNull FileAuthConfig config) {
