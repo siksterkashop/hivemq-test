@@ -80,6 +80,13 @@ tasks.pmdMain {
 
 pmd {
     reportsDir = file("$buildDir/reports/pmd/")
+    ruleSets(
+        "category/java/errorprone.xml",
+        "category/java/design.xml",
+        "category/java/bestpractices.xml",
+        "category/java/multithreading.xml",
+        "category/java/performance.xml",
+        "category/java/security.xml")
 }
 
 tasks.processTestResources {
