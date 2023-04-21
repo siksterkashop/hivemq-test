@@ -60,5 +60,5 @@ jobs:
             -Dsonar.sources=src/main/
             -Dsonar.tests=src/test/
             -Dsonar.java.binaries=build/classes/
-            -Dsonar.java.pmd.reportPaths=build/reports/pmd/
+            -Dsonar.java.pmd.reportPaths=build/reports/pmd/main.xml
             -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/report.xml
