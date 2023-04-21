@@ -6,6 +6,7 @@ plugins {
     id("org.sonarqube") version "4.0.0.2929"
     jacoco
     id("jacoco-report-aggregation")
+    pmd
 }
 
 group = "com.hivemq.extensions"
@@ -64,29 +65,28 @@ dependencies {
 
 tasks.withType<Test>().configureEach {
     useJUnitPlatform()
-
-    configure<JacocoTaskExtension> {
-        reports {
-            junitXml.required.set(true)
-            junitXml.outputLocation.set(file("${buildDir}/reports/jacoco"))
-            html.required.set(true)
-            html.outputLocation.set(layout.buildDirectory.dir("jacocoHtml"))
-        }
-    }
 }
-
 
 tasks.jacocoTestReport {
     reports {
         xml.required.set(true)
-        xml.outputLocation.set(file("${buildDir}/reports/jacoco/report.xml"))
+        xml.outputLocation.set(file("$buildDir/reports/jacoco/report.xml"))
     }
 }
 
-sonar {
-    properties {
-        property("sonar.coverage.jacoco.xmlReportPaths", "${buildDir}/reports/jacoco/report.xml")
-    }
+tasks.pmdMain {
+    ignoreFailures = true
+}
+
+pmd {
+    reportsDir = file("$buildDir/reports/pmd/")
+    ruleSets(
+        "category/java/errorprone.xml",
+        "category/java/design.xml",
+        "category/java/bestpractices.xml",
+        "category/java/multithreading.xml",
+        "category/java/performance.xml",
+        "category/java/security.xml")
 }
 
 tasks.processTestResources {
